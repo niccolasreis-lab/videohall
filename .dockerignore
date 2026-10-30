@@ -1,0 +1,8 @@
+data/
+backups/
+.test-data/
+.env
+*.log
+node_modules/
+verification/screenshots/
+.dockerignore

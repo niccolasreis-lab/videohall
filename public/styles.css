@@ -13,3 +13,11 @@ dialog{padding:0;border:1px solid #dfe8e5;border-radius:13px;max-width:calc(100v
 .digital-preview.layout-grid .digital-rows{display:grid;grid-template-columns:1fr 1fr;gap:12px}.digital-preview.layout-grid .digital-rows>div{background:#ffffff16;border:0;padding:15px;flex-direction:column;gap:10px;border-radius:7px}.digital-preview.layout-spotlight .digital-rows>div:first-child{font-size:30px;padding:25px 0}.digital-preview.layout-spotlight .digital-rows>div:not(:first-child){display:none}.digital-preview.layout-list-spotlight .digital-rows>div:first-child{font-size:26px}.digital-preview.orientation-vertical{max-width:420px;margin:auto;min-height:560px}
 .price-edit-row{grid-template-columns:minmax(85px,1fr) 55px 40px 70px 52px 31px;gap:5px}.price-edit-row>input{padding:8px 5px;font-size:10px}@media(max-width:550px){.price-edit-row{grid-template-columns:minmax(90px,1fr) 55px 40px}.price-edit-row .row-price{grid-column:1}.price-edit-row{border-bottom:1px solid var(--line);padding-bottom:8px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+
+/* Tabela de pontos: prioriza as colunas de decisão antes de rolar em telas estreitas. */
+.points-table th:nth-child(1),.points-table td:nth-child(1){min-width:150px;white-space:normal}
+.points-table th:nth-child(2),.points-table td:nth-child(2){min-width:150px;white-space:normal}
+.points-table td:last-child,.points-table th:last-child{position:sticky;right:0;background:#fff;box-shadow:-10px 0 12px -12px #16334540}
+.points-table th:last-child{background:#fbfcfd}
+@media(max-width:900px){.points-table th:nth-child(4),.points-table td:nth-child(4){display:none}}.points-table th,.points-table td{padding-left:16px;padding-right:16px}
+.points-table td:last-child,.points-table th:last-child{padding-left:12px;padding-right:12px}

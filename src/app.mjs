@@ -349,26 +349,12 @@ export function createApplication({ dataDir, secureCookies = false, maxUploadByt
         for (const row of all("SELECT CAST(created_at / 3600000 AS INTEGER) * 3600000 AS hour, COUNT(*) AS n FROM playback_events WHERE type = 'started' AND created_at >= ? GROUP BY hour", hours[0].at)) {
           const bucket = hours.find(h => h.at === row.hour); if (bucket) bucket.count = row.n;
         }
-        const thirtyDaysAgo = clock() - 30 * 86400000;
-        const totalPlays30d = q("SELECT COUNT(*) AS n FROM playback_events WHERE type = 'started' AND created_at >= ?", thirtyDaysAgo).n;
         const mediaCount = q('SELECT COUNT(*) AS n FROM media').n;
-        const virtualCount = q('SELECT COUNT(*) AS n FROM virtual_content').n;
-        const usage = {
-          airTimeHours: Math.round(totalPlays30d * 0.15 + Math.max(1, points.length) * 24),
-          days: 30,
-          moneySaved: (Math.max(1, points.length) * 15.0).toFixed(2),
-          workHoursSaved: Math.max(1, points.length),
-          updatesCount: totalPlays30d,
-          uploadsCount: mediaCount,
-          processedCount: virtualCount * 12 + 50,
-          paperSaved: (virtualCount * 0.25 * 10).toFixed(2),
-          printsAvoided: virtualCount * 10
-        };
         return json(res, 200, {
-          points, recentEvents, hours, serverTime: clock(), usage,
+          points, recentEvents, hours, serverTime: clock(),
           counts: {
             points: points.length, online: points.filter(p => p.online).length, paired: points.filter(p => p.paired).length,
-            media: q('SELECT COUNT(*) AS n FROM media').n + q('SELECT COUNT(*) AS n FROM virtual_content').n,
+            media: mediaCount + q('SELECT COUNT(*) AS n FROM virtual_content').n,
             playlists: q('SELECT COUNT(*) AS n FROM playlists').n,
             playsToday: q("SELECT COUNT(*) AS n FROM playback_events WHERE type = 'started' AND created_at >= ?", clock() - 86400000).n,
           },
