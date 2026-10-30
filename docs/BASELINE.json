@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-30T19:51:29.637Z",
+  "generatedAt": "2026-10-30T20:02:10.233Z",
   "files": {
     ".gitignore": "9159cf1c3941692f8b6a8f9624a0322b9a11a3b327dae5764d8cd39e4dfdf862",
     "Dockerfile": "4b282b41e977bc54d2f514eba03dd7d03f6006d9c9e41e26de3fe7a5051db0d1",
@@ -43,7 +43,7 @@
     "public/styles.css": "743b92570a2443ac50845e153475899b5e7caaa2056923b2cb648df98d253769",
     "public/toledo.js": "ce06a32921b00ab4b2edade0584e0b79264eb931f8f6bbb2a272f2c3208ecd5a",
     "public/video-health.js": "c870ea42be157334e2e6139bd74130ae4dc631f19cadcec19ccde48da4619c38",
-    "README.md": "1d56336f2d2941775b2db9a2a18b5f09e08a81c07e674d743fbfca911284e270",
+    "README.md": "2b12505c28226383e5a43c75823fdb0525bad9d8b3cb6fa589c52f3a8eb26071",
     "scripts/baseline.mjs": "38b025a5863da560fcc82554d2e0ca2496647b1587acd496969866b102b90cfa",
     "scripts/test-toledo.mjs": "f369184e48b08db8eee24cdb90baec0116f8ffc832f08dbe010b1cf91c344c60",
     "server.mjs": "6aa2c4dc50365111c4d37e9f94e93864ddab5a97ad557d81f2e985eb39d894e9",

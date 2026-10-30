@@ -33,9 +33,27 @@ Abra `http://127.0.0.1:3210` para criar o administrador da rede. Em outro navega
 
 Para acesso em uma rede local, inicie com `HOST=0.0.0.0`, use o endereço IP local do computador no outro dispositivo e mantenha o firewall liberado somente para a rede confiável. Para uso público, coloque a aplicação atrás de HTTPS e defina `SECURE_COOKIES=true`.
 
+## Docker
+
+O `Dockerfile` na raiz do repositório é autossuficiente: a imagem `node:24-alpine` já traz `node:sqlite`, não há dependências a instalar e o processo roda como usuário `node`.
+
+| Variável | Padrão | Efeito |
+| --- | --- | --- |
+| `PORT` | `3210` | Porta HTTP. |
+| `HOST` | `127.0.0.1`, ou `0.0.0.0` dentro de container | Interface de escuta. |
+| `APP_DATA_DIR` | `./data` | Diretório do SQLite e dos uploads. |
+| `SECURE_COOKIES` ou `COOKIE_SECURE` | `false` | Marca os cookies como `Secure`; exige HTTPS. |
+
+```powershell
+docker build -t videowall .
+docker run -d -p 3210:3000 -v videowall-data:/data videowall
+```
+
+O volume em `/data` guarda banco e mídias. Sem ele, tudo é perdido ao recriar o container. Para publicar, a origem precisa ser um repositório Git cujo `Dockerfile` esteja na raiz — o app ocupa a raiz do repositório, não uma subpasta.
+
 ### Baseline sem git
 
-Este ambiente não tem git instalado. Para detectar alterações no código sem controle de versão, use o manifesto de hashes:
+Este projeto também pode ser verificado sem git, pelo manifesto de hashes:
 
 ```powershell
 & 'C:\Users\operador\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' scripts/baseline.mjs
